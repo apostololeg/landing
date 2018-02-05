@@ -1,0 +1,63 @@
+.section
+    height 100vh
+    max-height 100vh
+    padding 0 1px
+    overflow hidden
+
+    &[id]
+        padding-top 80px // https://stackoverflow.com/questions/4086107
+
+    &:first-child
+    &:last-child
+        &:before
+            content ' '
+            position fixed
+            left 0
+            right 0
+            height 500px
+
+    &:first-child
+        padding-top 150px
+
+        &:before
+            top -500px
+            background-image linear-gradient(to right, #5ca2af, #55b55f)
+
+    &:last-child
+        &:before
+            bottom -500px
+            background-color #333
+
+    &.special
+        background #333
+        color #ccc
+
+        & .inner
+            padding-left 0
+            padding-right 0
+
+        & h1
+            text-shadow none
+
+    &.special-gradient
+        background-image linear-gradient(to bottom left, #55b55f, #658ffa)
+
+
+    &.footer
+        background-color #333
+        color #fcfcfc
+        min-height 200px
+
+    & h1
+        font-weight 300
+        text-shadow 0 1px 1px rgba(255,255,255,.4)
+
+    & > .inner
+        max-width 1000px
+        padding 100px 20px
+        margin 0 auto
+
+.chat
+    width 400px
+    height 600px
+

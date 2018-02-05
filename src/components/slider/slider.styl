@@ -1,0 +1,53 @@
+.slider
+    display flex
+    position relative
+    max-width 100%
+    overflow hidden
+
+    &-inner
+        flex-grow 1
+        max-width 100%
+
+    &_controls &-inner
+        max-width calc(100% - 200px)
+
+    &-canvas
+        display inline-flex
+        align-items center
+        white-space nowrap
+
+    &-item
+        display inline-block
+
+    &-control
+        width 100px
+        height auto
+        cursor pointer
+        background-image linear-gradient(to left,#333 0%, rgba(34,34,34,0) 100%)
+        z-index 2
+
+        &.left
+            left 0
+            transform rotateZ(180deg)
+
+        &.right
+            right 0
+
+        &:before
+            display block
+            content ''
+            height 100%
+            width 100%
+            background url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Nzcu%0AMTc1IDQ3Ny4xNzUiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cGF0aCBkPSJNMzYwLjczMSAy%0AMjkuMDc1bC0yMjUuMS0yMjUuMWMtNS4zLTUuMy0xMy44LTUuMy0xOS4xIDBzLTUuMyAxMy44IDAg%0AMTkuMWwyMTUuNSAyMTUuNS0yMTUuNSAyMTUuNWMtNS4zIDUuMy01LjMgMTMuOCAwIDE5LjEgMi42%0AIDIuNiA2LjEgNCA5LjUgNCAzLjQgMCA2LjktMS4zIDkuNS00bDIyNS4xLTIyNS4xYzUuMy01LjIg%0ANS4zLTEzLjguMS0xOXoiIGZpbGw9IiNGRkYiLz48L3N2Zz4=') no-repeat center
+            background-size 30%
+            transition transform .1s ease-out
+
+        &:hover:before
+            transform scale(1.1)
+        &:active:before
+            transform none
+
+
+    &.animation
+    &.moving &-inner
+        pointer-events none

@@ -1,0 +1,58 @@
+body
+html
+iframe
+button
+img
+    margin 0
+    padding 0
+    border 0
+    font-family sans-serif
+    -webkit-font-smoothing antialiased
+    -webkit-tap-highlight-color transparent
+
+img
+button
+    user-select none
+    user-drag none
+
+// html
+// body
+//     background-image linear-gradient(to bottom left, #55b55f, #658ffa)
+//     background-attachment fixed
+
+button
+    appearance none
+    padding 15px 20px
+    min-width 100px
+    border-radius 50px
+    border 0
+    outline none
+    box-shadow 0 2px 5px rgba(0,0,0,.2)
+    transition transform .1s ease-out, background-color .3s ease-out
+    text-align center
+    text-transform uppercase
+    font-size 100%
+    color #fcfcfc
+    text-shadow 0 1px 0 rgba(0,0,0,.2)
+    cursor pointer
+
+    .mouse &:hover
+        transform scale(1.05)
+    &:active
+        box-shadow inset 0 0 20px rgba(0,0,0,.2)
+        transform scale(.95)
+
+    &.green
+        background-color #55b55f
+
+        .mouse &:hover
+            background-color #5cc267
+
+    &.special
+        background-color #658ffa
+
+        .mouse &:hover
+            background-color #60a4ff
+
+::selection
+    background-color rgba(34,34,34,.2)

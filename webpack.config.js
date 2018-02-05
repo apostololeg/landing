@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const autoprefixer = require('autoprefixer')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -11,6 +12,11 @@ module.exports = {
         filename: 'bundle.js?v=[hash:6]'
     },
     plugins: [
+        new CopyWebpackPlugin([
+            {
+                from: 'node_modules/swiper/dist/css/swiper.min.css'
+            }
+        ]),
         new HtmlWebpackPlugin({
             filename: './index.html',
             template: './templates/index.html'
@@ -24,7 +30,7 @@ module.exports = {
                 exclude: path.resolve(__dirname, './node_modules')
             },
             {
-                test: /\.styl$/,
+                test: /\.(styl|css)$/,
                 use: [
                     { loader: 'style-loader', options: { sourceMap: false }},
                     { loader: 'css-loader', options: { sourceMap: false }},
