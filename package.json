@@ -13,7 +13,7 @@
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.3.1",
     "decko": "^1.2.0",
-    "swiper": "^4.1.0"
+    "three": "^0.89.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.5",

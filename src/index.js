@@ -2,6 +2,7 @@ import throttle from './utils/throttle.js'
 import preventFixedScroll from './utils/preventFixedScroll.js'
 import { isTouch } from './utils/pointerEvents.js'
 import Slider from './components/slider/slider.js'
+import Neural from './components/neural/neural.js'
 import './index.styl'
 
 const { body } = document
@@ -61,11 +62,11 @@ function changeCurrent(nav) {
 // init
 const headerSlider = new Slider($('.header .slider'), { autoinit: true })
 const mediaSlider = new Slider($('.media .slider'), { autoinit: true })
-
-window.mediaSlider = mediaSlider
+const neuralVusualisation = new Neural($('.neural'))
 
 new preventFixedScroll($('.header'))
 
+// binds
 $('.nav a').addEventListener('click', onNavClick)
 window.addEventListener('scroll', () => throttle(onScroll, 100))
 document.body.classList.add(isTouch ? 'touch' : 'mouse')

@@ -1,8 +1,11 @@
 const webpack = require('webpack')
 const path = require('path')
 const autoprefixer = require('autoprefixer')
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const modulesPath = path.resolve(__dirname, './node_modules')
+const ThreeRenderersPath = path.join(modulesPath, 'three/examples/js/renderers/')
 
 module.exports = {
     devtool: 'eval-source-map',
@@ -12,22 +15,23 @@ module.exports = {
         filename: 'bundle.js?v=[hash:6]'
     },
     plugins: [
-        new CopyWebpackPlugin([
-            {
-                from: 'node_modules/swiper/dist/css/swiper.min.css'
-            }
-        ]),
         new HtmlWebpackPlugin({
             filename: './index.html',
             template: './templates/index.html'
         })
     ],
+    resolve: {
+        alias: {
+            'three/Projector': path.join(ThreeRenderersPath, 'Projector.js'),
+            'three/CanvasRenderer': path.join(ThreeRenderersPath, 'CanvasRenderer.js')
+        }
+    },
     module: {
         rules: [
             {
                 test: /\.(js)/,
                 loader: 'babel-loader',
-                exclude: path.resolve(__dirname, './node_modules')
+                exclude: modulesPath
             },
             {
                 test: /\.(styl|css)$/,
@@ -43,7 +47,7 @@ module.exports = {
                     },
                     { loader: 'stylus-loader', options: { sourceMap: false }},
                 ],
-                exclude: path.resolve(__dirname, './node_modules')
+                exclude: modulesPath
             }
         ]
     }
