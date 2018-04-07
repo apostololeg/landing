@@ -3,6 +3,7 @@ const path = require('path')
 const autoprefixer = require('autoprefixer')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const modulesPath = path.resolve(__dirname, './node_modules')
 const ThreeRenderersPath = path.join(modulesPath, 'three/examples/js/renderers/')
@@ -18,7 +19,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: './index.html',
             template: './templates/index.html'
-        })
+        }),
+        new ExtractTextPlugin('styles.css')
     ],
     resolve: {
         alias: {
@@ -35,19 +37,20 @@ module.exports = {
             },
             {
                 test: /\.(styl|css)$/,
-                use: [
-                    { loader: 'style-loader', options: { sourceMap: false }},
-                    { loader: 'css-loader', options: { sourceMap: false }},
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            souceMap: false,
-                            plugins: () => [autoprefixer]
-                        }
-                    },
-                    { loader: 'stylus-loader', options: { sourceMap: false }},
-                ],
-                exclude: modulesPath
+                use: ExtractTextPlugin.extract({
+                    fallback: [{ loader: 'style-loader', options: { sourceMap: false }}],
+                    use: [
+                        { loader: 'css-loader', options: { sourceMap: false }},
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                souceMap: false,
+                                plugins: () => [autoprefixer]
+                            }
+                        },
+                        { loader: 'stylus-loader', options: { sourceMap: false }},
+                    ],
+                }),
             }
         ]
     }
